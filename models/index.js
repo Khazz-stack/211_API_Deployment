@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
+const pg = require('pg');
 const process = require('process');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
@@ -47,7 +48,7 @@ fs.readdirSync(__dirname)
       file.indexOf('.test.js') === -1
     );
   })
-  
+
   .forEach(file => {
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model; // Ini lokasi error kamu kalau ada model yang lupa `return`
